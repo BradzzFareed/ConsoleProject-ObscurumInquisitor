@@ -32,7 +32,6 @@ namespace ConsoleProject
     public class GameState
     {
         public Character Player { get; set; }
-        public string CurrentLocation { get; set; }
         public int CurrentChapter { get; set; }
         public Dictionary<String, bool> Flags { get; set; }
         public List<String> CompletedEvents { get; set; } = new List<String>(); // to store completed chapters
@@ -68,8 +67,7 @@ namespace ConsoleProject
         {
             currentState = new GameState
             {
-                Player = new Character("Detective McGilis", 200, 30, 4, 50),
-                // CurrentLocation = "Town Central",
+                Player = new Character("Detective McGilis \"Zero\" Rosenberger", 200, 30, 4, 50),
                 CurrentChapter = 1
             };
         }
@@ -187,7 +185,6 @@ namespace ConsoleProject
                                 damage = Math.Max(0, currentState.Player.SpecialSkill - enemy.Defense);
                                 enemy.Health -= damage;
                                 GameMenu.CreateBox("You dealt massive damage!", 5);
-                                
                             }
                             GameMenu.CreateBox("Skill Missed!", 5);
                             break;
@@ -196,9 +193,23 @@ namespace ConsoleProject
                     }
                     
                     // enemy turn
-                    damage = Math.Max(0, enemy.Attack - currentState.Player.Defense);
-                    currentState.Player.Health -= damage;
-                    GameMenu.CreateBox($"{enemy.Name} has dealt {damage} damage!", 5);
+                    if (enemy.Health < 0.3 * enemy.Health)
+                    {
+                        if (Random.Shared.Next(2) == 0)
+                        {
+                            damage = Math.Max(0, enemy.SpecialSkill - currentState.Player.Defense);
+                            currentState.Player.Health -= damage;
+                            GameMenu.CreateBox($"{enemy.Name} has used its special skill!", 5);
+                            GameMenu.CreateBox($"{enemy.Name} has dealt a massive {damage} damage!", 5);
+                        }
+                        GameMenu.CreateBox($"{enemy.Name} attack missed!", 5);
+                    }
+                    else
+                    {
+                        damage = Math.Max(0, enemy.Attack - currentState.Player.Defense);
+                        currentState.Player.Health -= damage;
+                        GameMenu.CreateBox($"{enemy.Name} has dealt {damage} damage!", 5);
+                    }
                     if (currentState.Player.Defense > 10)
                     {
                         currentState.Player.Defense = 10;
@@ -260,8 +271,7 @@ namespace ConsoleProject
             switch (currentState.CurrentChapter)
             {
                 case 1:
-                    ChapterTwoPointThree();
-                    //ChapterOne();
+                    ChapterOne();
                     break;
                 case 2:
                     ChapterOnePointOne();
@@ -298,181 +308,143 @@ namespace ConsoleProject
         }
         private void ChapterOne()
         {
-            try
+            while (true)
             {
-                if (!currentState.Flags.ContainsKey("chapter_1_started"))
+                try
                 {
-                    currentState.Flags["chapter_1_started"] = true;
-
-                    GameMenu.TypingAnimation("Chapter One: The Case of Fanfoss");
-                    GameMenu.TypingAnimation("\r\n*You entered the office of the director*");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: Ah detective you're finally here, I've been waiting for you. Come, have a seat we have much to talk about.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\n*You took a seat*\r\n");
-                    string[] options = { "Hello Director, another treasure hunt I presume?", "Greetings Director, another missing person again I'm guessing?", "What do you need for me to accomplish this time boss? Review a file case perhaps?" };
-                    MenuControls.ShowChoices(options);
-
-                    GameMenu.TypingAnimation("\r\nChoice: ");
-                again:
-                    ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
-                    char choice = keyInfo.KeyChar;
-                    switch (choice)
+                    if (!currentState.Flags.ContainsKey("chapter_1_started"))
                     {
-                        case '1':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Hello Director, another treasure hunt I presume?");
-                            break;
-                        case '2':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Greetings Director, another missing person again I'm guessing?");
-                            break;
-                        case '3':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: What do you need for me to accomplish this time boss? Review a file case perhaps?");
-                            break;
-                        default:
-                            goto again;
-                            throw new Exception("Please choose from the provided choices only.");
+                        currentState.Flags["chapter_1_started"] = true;
+
+                        GameMenu.TypingAnimation("Chapter One: The Case of Fanfoss");
+                        GameMenu.TypingAnimation("\r\n*You entered the office of the director*");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: Ah detective you're finally here, I've been waiting for you. Come, have a seat we have much to talk about.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\n*You took a seat*\r\n");
+                        string[] options = { "Hello Director, another treasure hunt I presume?", "Greetings Director, another missing person again I'm guessing?", "What do you need for me to accomplish this time boss? Review a file case perhaps?" };
+                        MenuControls.ShowChoices(options);
+                        GameMenu.TypingAnimation("\r\nChoice: ");
+
+                        while (true)
+                        {
+                            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+                            char choice = keyInfo.KeyChar;
+                            if (choice == '1' || choice == '2' || choice == '3')
+                            {
+                                Console.ResetColor();
+                                Console.Clear();
+                                string detectiveDialogue = choice switch
+                                {
+                                    '1' => "Detective Zero: Hello Director, another treasure hunt I presume?",
+                                    '2' => "Detective Zero: Greetings Director, another missing person again I'm guessing?",
+                                    '3' => "Detective Zero: What do you need for me to accomplish this time boss? Review a file case perhaps?",
+                                    _=> throw new InvalidOperationException("Invalid choice detected.")
+                                };
+                                GameMenu.TypingAnimation(detectiveDialogue);
+                                break;
+                            }
+                            else
+                            {
+                                GameMenu.TypingAnimation("\r\nInvalid choice. Please choose from the provided options.");
+                            }
+                        }
+                        Thread.Sleep(2000);
                     }
-                    Thread.Sleep(2000);
-                }
-
-                else if (!currentState.Flags.ContainsKey("conversation_with_director"))
-                {
-                    GameMenu.TypingAnimation("\nDirector: Its a different one and its rather interesting. This kind of request is the first of its kind and it is something quite unusual.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Hmm how intriguing, the first of its kind you say? what might this unusual case be director?");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector:\"Shadow Hunting\". That was the name of the request submitted to the department.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Huh that is indeed unusual. Is there a chance that this is just some wild goose chase director?");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: Bizarre as it sounds, we cannot simply label it as some wild goose chase. According to this memo, there seems to be some kind of anomaly looming over the village. A great number of people have reportedly gone missing or dead all in the span of one night and some witnesses say some bodies look either mutilated or drained, as if the soul was forcefully removed from the body...");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Sweet mother of mercy...");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Seems quite late for a halloween celebration innit? Are there any clues said by the sender that could aid in narrowing the cause of all this?");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: Nothing of significance unfortunately. They only said something about a weird shadow surrounding the dead victims before recovering their corpses.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Ohh I see...I have no idea what I'm supposed to make of that. Are you sure this isn't a prank director?");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: Believe me I hope it was a prank. Regardless, I'm going to need you to deploy to the town to investigate. If what the towspeople are saying are true then we cannot ignore the unease and casualties that are happening.");
-                    string[] options2 = { "Express Frustration", "Laugh at the adsurdity" };
-                    MenuControls.ShowChoices(options2);
-                    again:
-
-                    ConsoleKeyInfo keyInfo1 = Console.ReadKey(intercept: true);
-                    char choice1 = keyInfo1.KeyChar;
-                    switch (choice1)
+                    else if (!currentState.Flags.ContainsKey("conversation_with_director"))
                     {
-                        case '1':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: *Expresses Frustration*\r\nVery well then director. If you insist that I investigate this case then I shall do so with haste.");
-                            break;
-                        case '2':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: *Laughs at the absurdity*\r\nEver the serious type eh director MWAHAHAHAHA. Do not worry, I will make quick work of these silly antics.");
-                            break;
-                        default:
-                            goto again;
+                        currentState.Flags["conversation_with_director"] = true;
+
+                        GameMenu.TypingAnimation("Director: Its a different one and its rather interesting. This kind of request is the first of its kind and it is something quite unusual.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Hmm how intriguing, the first of its kind you say? what might this unusual case be director?");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector:\"Shadow Hunting\". That was the name of the request submitted to the department.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Huh that is indeed unusual. Is there a chance that this is just some wild goose chase director?");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: Bizarre as it sounds, we cannot simply label it as some wild goose chase. According to this memo, there seems to be some kind of anomaly looming over the village. A great number of people have reportedly gone missing or dead all in the span of one night and some witnesses say some bodies look either mutilated or drained, as if the soul was forcefully removed from the body...");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Sweet mother of mercy...");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Seems quite late for a halloween celebration innit? Are there any clues said by the sender that could aid in narrowing the cause of all this?");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: Nothing of significance unfortunately. They only said something about a weird shadow surrounding the dead victims before recovering their corpses.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Ohh I see...I have no idea what I'm supposed to make of that. Are you sure this isn't a prank director?");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: Believe me I hope it was a prank. Regardless, I'm going to need you to deploy to the town to investigate. If what the towspeople are saying are true then we cannot ignore the unease and casualties that are happening.");
+                        string[] options2 = { "Express Frustration", "Laugh at the adsurdity" };
+                        MenuControls.ShowChoices(options2);
+                        GameMenu.TypingAnimation("\r\nChoice: ");
+
+                        while (true)
+                        {
+                            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+                            char choice = keyInfo.KeyChar;
+                            switch (choice)
+                            {
+                                case '1':
+                                    Console.ResetColor();
+                                    Console.Clear();
+                                    GameMenu.TypingAnimation("Detective Zero: *Expresses Frustration*\r\nVery well then director. If you insist that I investigate this case then I shall do so with haste.");
+                                    break;
+                                case '2':
+                                    Console.ResetColor();
+                                    Console.Clear();
+                                    GameMenu.TypingAnimation("Detective Zero: *Laughs at the absurdity*\r\nEver the serious type eh director MWAHAHAHAHA. Do not worry, I will make quick work of these silly antics.");
+                                    break;
+                                default:
+                                    throw new FormatException("Invalid Input Format. Please choose from the provided choices only.");
+                            }
+                            currentState.Flags["conversation_with_director"] = true;
+                            Thread.Sleep(2000);
+                        }
                     }
-                    GameMenu.TypingAnimation("\r\nDirector: To be frank detective, I do not expect you to actually catch a shadow...I don't even think that's possible. What matters the most is to investigate who or what is causing this malevolence in the village.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: You have my word director. So do I have anything to start with aside from the clue you gave earlier?");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: As much as I want to provide more clues detective, I am afraid that is all we currently have at the moment.");
-                    Console.ReadKey(intercept: true);
-                    string[] options3 = { "*Sigh * I guess I'll make do of what I have for now", "Great...just great. (sarcastically said)" };
-                    MenuControls.ShowChoices(options3);
-                    again1:
-
-                    ConsoleKeyInfo keyInfo2 = Console.ReadKey(intercept: true);
-                    char choice2 = keyInfo2.KeyChar;
-                    switch (choice2)
+                    else if (!currentState.Flags.ContainsKey("chapter_1_complete"))
                     {
-                        case '1':
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: *Sigh* I guess I'll make do of what I have for now");
-                            break;
-                        case '2':
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Great...just great. (sarcastically said)");
-                            break;
-                        default:
-                            goto again1;
-                    }
-                    GameMenu.TypingAnimation("\r\nDirector: I guess it is settled then. Go to the village of Fanfoss and meet with the local church's head priest. He was the one that enlisted our aid and asking him questions would be a good start. The priest provided the directions to the town, I will send it to you the later.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDetective Zero: Many thanks director. I will leave for the town at dawn.");
-                    Console.ReadKey(intercept: true);
-                    GameMenu.TypingAnimation("\r\nDirector: Godspeed Detective McGilis \"Zero\" Rosenberger. Do not hesitate to call should the situation escalate to a dangerous degree.");
-                    Console.ReadKey(intercept: true);
-                    string[] options4 = { "Express Confidence", "Consider the Director" };
-                    MenuControls.ShowChoices(options4);
-                    again2:
+                        GameMenu.TypingAnimation("\r\n*You now make your way towards the town of Fanfoss*");
+                        Thread.Sleep(2000);
 
-                    ConsoleKeyInfo keyInfo3 = Console.ReadKey(intercept: true);
-                    char choice3 = keyInfo3.KeyChar;
-                    switch (choice3)
-                    {
-                        case '1':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Baaaaah you worry too much director. There is no need to call for I intend to solve this case as fast as possible.");
-                            GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*");
-                            break;
-                        case '2':
-                            Console.ResetColor();
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: I'll keep that in mind director. I'll make sure to immediately contact the department if things go south over there.");
-                            GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*");
-                            currentState.Flags["director_helps"] = true;
-                            break;
-                        default:
-                            goto again2;
-                    }
+                        currentState.Flags["conversation_with_director"] = true;
+                        currentState.CompletedEvents.Add("ChapterOne_Completed");
+                        currentState.CurrentChapter++;
 
-                    GameMenu.TypingAnimation("\r\n*You now make your way towards the town of Fanfoss*");
-                    Thread.Sleep(2000);
-                    
-                    currentState.Flags["conversation_with_director"] = true;
-                    currentState.CompletedEvents.Add("ChapterOne_Completed");
-                    currentState.CurrentChapter++;
-
-                    Console.Clear();
-                    Console.WriteLine("\r\nChapter One Complete! Your choices will affect future events...");
-                    Console.WriteLine("\r\nDo you wish to go to the next chapter? (y) if yes or (n) if no");
-                    repeat:
-                    char decision1 = Convert.ToChar(Console.ReadLine().ToLower());
-                    if (decision1 == 'y')
-                    {
                         Console.Clear();
-                        ChapterOnePointOne();
-                    }
-                    else if (decision1 == 'n')
-                    {
-                        SaveGame();
-                        PlayGame();
+                        Console.WriteLine("Chapter One Complete! Your choices will affect future events...");
+                        Console.WriteLine("Do you wish to go to the next chapter? (y) if yes or (n) if no");
+                        while (true)
+                        {
+                            char decision1 = Convert.ToChar(Console.ReadLine().ToLower());
+                            if (decision1 == 'y')
+                            {
+                                Console.Clear();
+                                ChapterOnePointOne();
+                                break;
+                            }
+                            else if (decision1 == 'n')
+                            {
+                                SaveGame();
+                                PlayGame();
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Select 'y' or 'n' only");
+                            }
+                        }
+                        Thread.Sleep(2000);
                     }
                     else
                     {
-                        Console.WriteLine("Select 'y' or 'n' only");
-                        goto repeat;
+                        break;
                     }
-                    Thread.Sleep(2000);
                 }
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine($"Error: {ex.Message}");
-                Console.WriteLine("Please type in the shown numbers only when it comes to dialogue choices.");
+                catch (FormatException ex)
+                {
+                    Console.WriteLine($"\nError: {ex.Message}");
+                    Console.WriteLine("\nInvalid Input. Please only type in what is presented in choices.");
+                }
             }
         }
         private void ChapterOnePointOne()
