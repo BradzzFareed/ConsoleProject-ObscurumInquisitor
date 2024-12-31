@@ -28,7 +28,7 @@ namespace ConsoleProject
                                                                                                                        | |                                    
                                                                                                                        |_|                                    
                                                                            (Use arrow keys to navigate and Enter to select) ";
-            string[] options = { "Start Game", "Settings", "About", "Exit" };
+            string[] options = { "Start Game", "About", "Exit" };
             MenuControls mainMenu = new MenuControls(prompt, options);
             int SelectedIndex = mainMenu.Run();
             switch (SelectedIndex)
@@ -37,16 +37,13 @@ namespace ConsoleProject
                     StartGame();
                     break;
                 case 1:
-                    Settings();
-                    break;
-                case 2:
                     DisplayAboutInfo();
                     break;
-                case 3:
+                case 2:
                     ExitGame();
                     break;
                 default:
-                    throw new ArgumentException("Invalid Choice. Please select from \"Start Game\", \"Settings\", \"About\", \"Exit\" only)");
+                    throw new ArgumentException("Invalid Choice. Please select from \"Start Game\", \"About\", \"Exit\" only)");
             }
         }
         public void ExitGame()
@@ -59,14 +56,6 @@ namespace ConsoleProject
         {
             Console.Clear();
             Console.WriteLine("The game is still under development. Please wait for announcements regarding official release!");
-            Console.ReadKey(true);
-            RunMainMenu();
-        }
-        private void Settings()
-        {
-            Console.Clear();
-            Console.WriteLine("This section is still under development");
-            Thread.Sleep(1000);
             Console.ReadKey(true);
             RunMainMenu();
         }
