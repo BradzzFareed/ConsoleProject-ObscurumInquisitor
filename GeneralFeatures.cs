@@ -355,7 +355,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["conversation_with_director"] = true;
 
-                        GameMenu.TypingAnimation("Director: Its a different one and its rather interesting. This kind of request is the first of its kind and it is something quite unusual.");
+                        GameMenu.TypingAnimation("\r\nDirector: Its a different one and its rather interesting. This kind of request is the first of its kind and it is something quite unusual.");
                         Console.ReadKey(intercept: true);
                         GameMenu.TypingAnimation("\r\nDetective Zero: Hmm how intriguing, the first of its kind you say? what might this unusual case be director?");
                         Console.ReadKey(intercept: true);
@@ -374,8 +374,72 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDetective Zero: Ohh I see...I have no idea what I'm supposed to make of that. Are you sure this isn't a prank director?");
                         Console.ReadKey(intercept: true);
                         GameMenu.TypingAnimation("\r\nDirector: Believe me I hope it was a prank. Regardless, I'm going to need you to deploy to the town to investigate. If what the towspeople are saying are true then we cannot ignore the unease and casualties that are happening.");
-                        string[] options2 = { "Express Frustration", "Laugh at the adsurdity" };
+                        string[] options = { "Express Frustration", "Laugh at the adsurdity" };
+                        MenuControls.ShowChoices(options);
+                        GameMenu.TypingAnimation("\r\nChoice: ");
+
+                        while (true)
+                        {
+                            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+                            char choice = keyInfo.KeyChar;
+                            if (choice == '1' || choice == '2' || choice == '3')
+                            {
+                                Console.ResetColor();
+                                Console.Clear();
+                                string detectiveDialogue = choice switch
+                                {
+                                    '1' => "Detective Zero: *Expresses Frustration*\r\nVery well then director. If you insist that I investigate this case then I shall do so with haste.",
+                                    '2' => "Detective Zero: *Laughs at the absurdity*\r\nEver the serious type eh director MWAHAHAHAHA. Do not worry, I will make quick work of these silly antics.",
+                                    _ => throw new InvalidOperationException("Invalid choice detected.")
+                                };
+                                GameMenu.TypingAnimation(detectiveDialogue);
+                                break;
+                            }
+                            else
+                            {
+                                GameMenu.TypingAnimation("\r\nInvalid choice. Please choose from the provided options.");
+                            }
+                        }
+                        GameMenu.TypingAnimation("\r\nDirector: To be frank detective, I do not expect you to actually catch a shadow...I don't even think that's possible. What matters the most is to investigate who or what is causing this malevolence in the village.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: You have my word director. So do I have anything to start with aside from the clue you gave earlier?");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: As much as I want to provide more clues detective, I am afraid that is all we currently have at the moment.");
+                        string[] options2 = { "*Sigh * I guess I'll make do of what I have for now", "Great...just great. (sarcastically said)" };
                         MenuControls.ShowChoices(options2);
+                        GameMenu.TypingAnimation("\r\nChoice: ");
+
+                        while (true)
+                        {
+                            ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true);
+                            char choice = keyInfo.KeyChar;
+                            if (choice == '1' || choice == '2' || choice == '3')
+                            {
+                                Console.ResetColor();
+                                Console.Clear();
+                                string detectiveDialogue = choice switch
+                                {
+                                    '1' => "Detective Zero: *Sigh* I guess I'll make do of what I have for now",
+                                    '2' => "Detective Zero: Great...just great. (sarcastically said)",
+                                    _ => throw new InvalidOperationException("Invalid choice detected.")
+                                };
+                                GameMenu.TypingAnimation(detectiveDialogue);
+                                break;
+                            }
+                            else
+                            {
+                                GameMenu.TypingAnimation("\r\nInvalid choice. Please choose from the provided options.");
+                            }
+                        }
+
+                        GameMenu.TypingAnimation("\r\nDirector: I guess it is settled then. Go to the village of Fanfoss and meet with the local church's head priest. He was the one that enlisted our aid and asking him questions would be a good start. The priest provided the directions to the town, I will send it to you the later.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Many thanks director. I will leave for the town at dawn.");
+                        Console.ReadKey(intercept: true);
+                        GameMenu.TypingAnimation("\r\nDirector: Godspeed Detective McGilis \"Zero\" Rosenberger. Do not hesitate to call should the situation escalate to a dangerous degree.");
+                        Console.ReadKey(intercept: true);
+                        string[] options3 = { "Express Confidence", "Consider the Director" };
+                        MenuControls.ShowChoices(options3);
                         GameMenu.TypingAnimation("\r\nChoice: ");
 
                         while (true)
@@ -385,21 +449,27 @@ namespace ConsoleProject
                             switch (choice)
                             {
                                 case '1':
+                                    currentState.Flags["option_1_chosen"] = true;
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("Detective Zero: *Expresses Frustration*\r\nVery well then director. If you insist that I investigate this case then I shall do so with haste.");
+                                    GameMenu.TypingAnimation("Detective Zero: Baaaaah you worry too much director. There is no need to call for I intend to solve this case as fast as possible.");
+                                    GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*");
                                     break;
                                 case '2':
+                                    currentState.Flags["director_helps"] = true;
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("Detective Zero: *Laughs at the absurdity*\r\nEver the serious type eh director MWAHAHAHAHA. Do not worry, I will make quick work of these silly antics.");
+                                    GameMenu.TypingAnimation("Detective Zero: I'll keep that in mind director. I'll make sure to immediately contact the department if things go south over there.");
+                                    GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*");
                                     break;
                                 default:
-                                    throw new FormatException("Invalid Input Format. Please choose from the provided choices only.");
+                                    GameMenu.TypingAnimation("\nInvalid choice or already selected option. Please choose again.");
+                                    continue;
                             }
-                            currentState.Flags["conversation_with_director"] = true;
                             Thread.Sleep(2000);
+                            break;
                         }
+
                     }
                     else if (!currentState.Flags.ContainsKey("chapter_1_complete"))
                     {
