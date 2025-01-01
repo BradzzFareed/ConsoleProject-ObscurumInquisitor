@@ -316,7 +316,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_1_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter One: The Case of Fanfoss", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter One: The Case of Fanfoss");
                         GameMenu.TypingAnimation("\r\n*You entered the office of the director*\r\n");
                         
 
@@ -324,7 +324,7 @@ namespace ConsoleProject
                         
 
                         GameMenu.TypingAnimation("\r\n*You took a seat*\r\n");
-                        string[] options = { "\r\nHello Director, another treasure hunt I presume?", "Greetings Director, another missing person again I'm guessing?", "What do you need for me to accomplish this time boss? Review a file case perhaps?\r\n" };
+                        string[] options = { "Hello Director, another treasure hunt I presume?", "Greetings Director, another missing person again I'm guessing?", "What do you need for me to accomplish this time boss? Review a file case perhaps?" };
                         MenuControls.ShowChoices(options);
                         GameMenu.TypingAnimation("\r\nChoice: ");
 
@@ -543,7 +543,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_1.1_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 1.1: The Village", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 1.1: The Village");
                         GameMenu.TypingAnimation("\r\n*You now make your way to the village*\r\n");
                         
 
@@ -823,7 +823,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_1.2_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 1.2: The Church", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 1.2: The Church");
                         
 
                         GameMenu.TypingAnimation("\r\n*You have arrived at the church*\r\n");
@@ -1005,7 +1005,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_2_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 2: Investigation ", waitForKey: true); 
+                        GameMenu.TypingAnimation("Chapter 2: Investigation "); 
                         GameMenu.TypingAnimation("*You are going to the villagers to ask about their experiences*");
                         
 
@@ -1585,7 +1585,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_2.1_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 2.1: Shadow? ", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 2.1: Shadow? ");
                         
 
                         GameMenu.TypingAnimation("\r\nDetective Zero: What is happenning outside Arthur?\r\n");
@@ -1888,11 +1888,11 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_2.2_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 2.2: The Stone", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 2.2: The Stone");
 
-                        GameMenu.TypingAnimation("\r\n*With the unknown failed shadow offering you help. You continued on the investigation.*\r\n", waitForKey: true);
+                        GameMenu.TypingAnimation("\r\n*With the unknown failed shadow offering you help. You continued on the investigation.*\r\n");
 
-                        GameMenu.TypingAnimation("\r\nYou have been thinking if having Arthur and Erebus might be a good idea to bring on your journey.\r\n", waitForKey: true);
+                        GameMenu.TypingAnimation("\r\nYou have been thinking if having Arthur and Erebus might be a good idea to bring on your journey.\r\n");
 
                     }
                     else if (!currentState.Flags.ContainsKey("argue_with_arthur"))
@@ -1955,34 +1955,34 @@ namespace ConsoleProject
 
                         if (currentState.Flags.ContainsKey("director_helps"))
                         {
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Hold on, I should contact the director first. He did say to call in this kind of situation.", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Hold on, I should contact the director first. He did say to call in this kind of situation.");
 
-                            GameMenu.TypingAnimation("\r\n*Calls director*", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\n*Calls director*");
 
-                            GameMenu.TypingAnimation("\r\nDirector: Ahhhh Rosenberger you callled. What's our situation over there?", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDirector: Ahhhh Rosenberger you callled. What's our situation over there?");
 
                             GameMenu.TypingAnimation("\r\nDetective Zero: There is a non-hostile shadow that is helping us currently. Calling in reinforcements would be a game changer but I fear they won't make it in time.");
 
-                            GameMenu.TypingAnimation("\r\nDirector: Yes I am afraid it would take too long for reinforcements to come. Good thing I have ordered to bring you some combat equipment as a precautionary measure.", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDirector: Yes I am afraid it would take too long for reinforcements to come. Good thing I have ordered to bring you some combat equipment as a precautionary measure.");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Goodness director, you are one hell of a blessing to have in this times. Where shall I get it?", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Goodness director, you are one hell of a blessing to have in this times. Where shall I get it?");
 
-                            GameMenu.TypingAnimation("\r\nDirector: I had it sent to the church, you can arm yourself there.", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDirector: I had it sent to the church, you can arm yourself there.");
 
-                            GameMenu.TypingAnimation("\r\nRoger that director, thanks again", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nRoger that director, thanks again");
 
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Shall we make a quick stopover then detective?", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Shall we make a quick stopover then detective?");
                             
                             currentState.Player.Health += 50;
                             currentState.Player.Attack += 10;
                             currentState.Player.Defense += 5;
                             
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Yes, let us go shadow.", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Yes, let us go shadow.");
                         }
                         else
                         {
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Just to be sure, you're not forgetting anything are you?", waitForKey: true);
-                            GameMenu.TypingAnimation("\r\nDetective Zero: I am fully prepared shadow. Let us make haste!", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Just to be sure, you're not forgetting anything are you?");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: I am fully prepared shadow. Let us make haste!");
                         }
                         GameMenu.TypingAnimation("\r\n*You started walking to the Big Tree with the guide of the shadow.*\r\n");
 
@@ -2017,7 +2017,7 @@ namespace ConsoleProject
                         currentState.CurrentChapter++;
 
 
-                        GameMenu.TypingAnimation("After an unexpected encounter, an intense argument. You have finally obtained a clue that would lead to the heart of this case.\r\n", waitForKey: true);
+                        GameMenu.TypingAnimation("After an unexpected encounter, an intense argument. You have finally obtained a clue that would lead to the heart of this case.\r\n");
 
 
                         Console.Clear();
@@ -2062,7 +2062,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_2.3_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 2.3: The Barrier", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 2.3: The Barrier");
                         int shadowDefeated = 0;
                         string[] symbols = { "New Moon", "Crescent Moon", "Half Moon", "Gibbous Moon", "Full Moon" };
                         int number = 0;
@@ -2115,22 +2115,22 @@ namespace ConsoleProject
                             
                             GameMenu.TypingAnimation("\r\n*Plot twist: The murderer turns out to be Carter’s own private doctor, who was secretly involved in financial schemes with Carter's wife.*\r\n");
                    
-                            GameMenu.TypingAnimation("\r\n(Flashback ends*\r\n", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\n(Flashback ends*\r\n");
 
                             Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: We then proceded to storm the house of Mr. Carter's private doctor. He was elusive, madman tried to kill me after I saw him trying to escape. Luckily I managed to defend myself.", waitForKey: true);
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Since then, word had spread about\r\n the case. A rookie solving a case faster that even seasoned detectives can solve.", waitForKey: true);
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Ahhh so you're a prodigy detective!", waitForKey: true);
+                            GameMenu.TypingAnimation("Detective Zero: We then proceded to storm the house of Mr. Carter's private doctor. He was elusive, madman tried to kill me after I saw him trying to escape. Luckily I managed to defend myself.");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Since then, word had spread about\r\n the case. A rookie solving a case faster that even seasoned detectives can solve.");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Ahhh so you're a prodigy detective!");
                             GameMenu.TypingAnimation("\r\nDetective Zero: (Joking said) Flattering, but a prodigy would be an overstatement.");
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Heads up detective, we are no longer alone it seems.", waitForKey: true);
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Heads up detective, we are no longer alone it seems.");
                         }
                         else
                         {
                             Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Care for small talk shadow?", waitForKey: true);
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Now is not the time detective, maybe some other time once this is over.", waitForKey: true);
+                            GameMenu.TypingAnimation("Detective Zero: Care for small talk shadow?");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Now is not the time detective, maybe some other time once this is over.");
                         }
-                        GameMenu.TypingAnimation("\r\nAnonymous voice: Heads up detective, we are no longer alone it seems.", waitForKey: true);
+                        GameMenu.TypingAnimation("\r\nAnonymous voice: Heads up detective, we are no longer alone it seems.");
                         while (shadowDefeated < 5)
                         {
                             try
@@ -2182,7 +2182,7 @@ namespace ConsoleProject
                         currentState.CompletedEvents.Add("Chapter2.3_Completed");
                         currentState.CurrentChapter++;
 
-                        GameMenu.TypingAnimation("After having acquired all the symbols, you are one step closer to the shadows' world.\r\n", waitForKey: true);
+                        GameMenu.TypingAnimation("After having acquired all the symbols, you are one step closer to the shadows' world.\r\n");
                         
 
                         Console.Clear();
@@ -2228,7 +2228,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_2.4_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 2.4: The Chamber", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 2.4: The Chamber");
 
                         GameMenu.TypingAnimation("\r\n*You inserted all the symbols and the door unlocked.*\r\n");
 
@@ -2300,7 +2300,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_3_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 3: The Big Tree", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 3: The Big Tree");
 
                         GameMenu.TypingAnimation("\r\nYou continued your pursuit, guided by the shadow.\r\n");
                         
@@ -2360,7 +2360,7 @@ namespace ConsoleProject
                         currentState.CompletedEvents.Add("Chapter3_Completed");
                         currentState.CurrentChapter++;
 
-                        GameMenu.TypingAnimation("You approach the Big Tree, the last destination where this case will end once and for all. You steel your heart and mind for things are about to get heavy", waitForKey: true);
+                        GameMenu.TypingAnimation("You approach the Big Tree, the last destination where this case will end once and for all. You steel your heart and mind for things are about to get heavy");
                         
                         while (true)
                         {
@@ -2400,7 +2400,7 @@ namespace ConsoleProject
                     {
                         currentState.Flags["chapter_3.1_started"] = true;
 
-                        GameMenu.TypingAnimation("Chapter 3.1: God of Shadows", waitForKey: true);
+                        GameMenu.TypingAnimation("Chapter 3.1: God of Shadows");
 
                         GameMenu.TypingAnimation("\r\nYou reached the Big Tree, and a figure emerged from the shadows.\r\n");
                         
@@ -2515,7 +2515,7 @@ namespace ConsoleProject
                         Console.Clear();
                         GameMenu.TypingAnimation("CASE SOLVED!");
                         GameMenu.TypingAnimation("You have finished the story. Thank you for playing our game!");
-                        GameMenu.TypingAnimation("Press any key to exit.", waitForKey: true);
+                        GameMenu.TypingAnimation("Press any key to exit.");
                         
                     }
                     else
