@@ -55,21 +55,21 @@ namespace ConsoleProject
         private void DisplayAboutInfo()
         {
             Console.Clear();
-            Console.WriteLine("The game is still under development. Please wait for announcements regarding official release!");
+            GameMenu.TypingAnimation("Hellow, the developers here and we are delighted that you are playing this game. This game was developed by three first year computer science students. It is a final requirement/final exam in the subject ITEC102 - Fundamentals of Programming. We hope that you will enjoy the game and please do not hesitate to send feedback and suggestions since we are always open to ideas that will contribute to the improvement of our project. We hereby express our gratitude to you!");
             Console.ReadKey(true);
             RunMainMenu();
         }
         private void StartGame()
         {
             Game startGame = new Game();
-            startGame.StartGame();
+            startGame.StartGame(); // start game in game class
         }
         public static void TypingAnimation(string typing)
         {
             foreach (char letter in typing)
             {
                 Console.Write(letter);
-                Thread.Sleep(1);
+                Thread.Sleep(0);
             }
             Console.ReadKey(intercept: true);
         }
@@ -91,7 +91,7 @@ namespace ConsoleProject
         {
             SoundPlayer player = new SoundPlayer();
             player.SoundLocation = filepath;
-            player.Play();
+            player.PlayLooping();
         }
     }
 }

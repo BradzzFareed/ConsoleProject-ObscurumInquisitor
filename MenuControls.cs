@@ -91,9 +91,9 @@ namespace ConsoleProject
             foreach (string option in options)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine($"\r\n{selectionCounter++}. {option}");
+                Console.WriteLine($"{selectionCounter++}. {option}");
             }
-            Console.Write("Choice: ");
+            Console.Write("\nChoice: ");
         }
     }
 }

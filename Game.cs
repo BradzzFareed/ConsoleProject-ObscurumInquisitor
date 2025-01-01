@@ -66,7 +66,7 @@ namespace ConsoleProject
         {
             currentState = new GameState
             {
-                Player = new Character("Detective McGilis \"Detective Zero\" Rosenberger", 250, 30, 9, 50),
+                Player = new Character("Detective McGilis \"Detective Zero\" Rosenberger", 250, 1000, 9, 50),
                 CurrentChapter = 1
             };
         }
@@ -93,7 +93,7 @@ namespace ConsoleProject
             int SelectedIndex = startMenu.Run();
             switch (SelectedIndex)
             {
-                case 0:
+                case 0:                  
                     PlayGame();
                     break;
                 case 1:
@@ -123,6 +123,7 @@ namespace ConsoleProject
                             SaveGame();
                             break;
                         case 'P':
+                            GameMenu.GameMusic("fading-over-time.wav");
                             Console.Clear();
                             ProgressStory();
                             break;
@@ -187,7 +188,7 @@ namespace ConsoleProject
                                 enemy.Health -= damage;
                                 GameMenu.CreateBox("You dealt massive damage!", 2);
                             }
-                            GameMenu.CreateBox("You dealt massive damage!", 2);
+                            GameMenu.CreateBox("Special Skill missed!", 2);
                             break;
                         default:
                             GameMenu.CreateBox("Invalid choice! Please choose a valid action.", 2);
@@ -274,22 +275,22 @@ namespace ConsoleProject
                     ChapterThree();
                     break;
                 case 4:
-                    ChapterThree();
-                    break;
-                case 5:
                     ChapterFour();
                     break;
-                case 6:
+                case 5:
                     ChapterFive();
                     break;
-                case 7:
+                case 6:
                     ChapterSix();
                     break;
-                case 8:
+                case 7:
                     ChapterSeven();
                     break;
-                case 9:
+                case 8:
                     ChapterEight();
+                    break;
+                case 9:
+                    ChapterNine();
                     break;
                 case 10:
                     ChapterTen();
@@ -321,7 +322,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\n*You took a seat*\r\n");
                         string[] options = { "Hello Director, another treasure hunt I presume?", "Greetings Director, another missing person again I'm guessing?", "What do you need for me to accomplish this time boss? Review a file case perhaps?" };
                         MenuControls.ShowChoices(options);
-                        GameMenu.TypingAnimation("\r\nChoice: ");
+                        
 
                         while (true)
                         {
@@ -374,8 +375,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDirector: Believe me I hope it was a prank. Regardless, I'm going to need you to deploy to the town to investigate. If what the towspeople are saying are true then we cannot ignore the unease and casualties that are happening.\r\n");
                         string[] options = { "Express Frustration", "Laugh at the adsurdity" };
                         MenuControls.ShowChoices(options);
-                        GameMenu.TypingAnimation("\r\nChoice: ");
-                    
+                       
                         while (true)
                         {
                             ConsoleKeyInfo keyInfo = Console.ReadKey(intercept: true); 
@@ -406,7 +406,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDirector: As much as I want to provide more clues detective, I am afraid that is all we currently have at the moment.\r\n");
                         string[] options2 = { "*Sigh * I guess I'll make do of what I have for now", "Great...just great. (sarcastically said)" };
                         MenuControls.ShowChoices(options2);
-                        GameMenu.TypingAnimation("\r\nChoice: ");
+                        
                        
                         while (true)
                         {
@@ -439,7 +439,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDirector: Godspeed Detective McGilis \"Detective Zero\" Rosenberger. Do not hesitate to call should the situation escalate to a dangerous degree.\r\n");                      
                         string[] options3 = { "Express Confidence", "Consider the Director" };
                         MenuControls.ShowChoices(options3);
-                        GameMenu.TypingAnimation("\r\nChoice: ");
+                        
                         
                         while (true)
                         {
@@ -452,7 +452,7 @@ namespace ConsoleProject
                                     Console.ResetColor();
                                     Console.Clear();
 
-                                    GameMenu.TypingAnimation("\r\nDetective Zero: Baaaaah you worry too much director. There is no need to call for I intend to solve this case as fast as possible.\r\n");
+                                    GameMenu.TypingAnimation("Detective Zero: Baaaaah you worry too much director. There is no need to call for I intend to solve this case as fast as possible.\r\n");
 
                                     GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*\r\n");    
 
@@ -462,7 +462,7 @@ namespace ConsoleProject
                                     Console.ResetColor();
                                     Console.Clear();
 
-                                    GameMenu.TypingAnimation("\r\nDetective Zero: I'll keep that in mind director. I'll make sure to immediately contact the department if things go south over there.\r\n");
+                                    GameMenu.TypingAnimation("Detective Zero: I'll keep that in mind director. I'll make sure to immediately contact the department if things go south over there.\r\n");
 
                                     GameMenu.TypingAnimation("\r\n*Proceeds to exit the office*\r\n");     
 
@@ -505,7 +505,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose again from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose again from 'y' or 'n' only.");
                                     continue;
                             }
                             break;
@@ -559,7 +559,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\n*Tree branches breaking sounds came from behind*\r\n");
                         
                         Console.Clear();
-                        GameMenu.TypingAnimation("\r\nDetective Zero: WHO GOES THERE!? SHOW YOURSELF!\r\n");
+                        GameMenu.TypingAnimation("Detective Zero: WHO GOES THERE!? SHOW YOURSELF!\r\n");
                         
                         string[] options = { "Investigate", "Keep going" };
                         MenuControls.ShowChoices(options);
@@ -575,7 +575,7 @@ namespace ConsoleProject
                                     Console.ResetColor();
                                     Console.Clear();
 
-                                    GameMenu.TypingAnimation("\r\nYou went closer to the tree behind you to investigate the source of those sounds.\r\n");
+                                    GameMenu.TypingAnimation("You went closer to the tree behind you to investigate the source of those sounds.\r\n");
 
                                     GameMenu.TypingAnimation("\r\nDetective Zero: FREEZE!\r\n");
                                     
@@ -592,7 +592,7 @@ namespace ConsoleProject
                                     Console.ResetColor();
                                     Console.Clear();
 
-                                    GameMenu.TypingAnimation("\r\nDetective Zero: Hmm maybe it was just an animal passing by.\r\n");
+                                    GameMenu.TypingAnimation("Detective Zero: Hmm maybe it was just an animal passing by.\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\n*You kept on walking until a man suddenly grabs you from behind and covered your mouth.\r\n");
                                     
@@ -652,8 +652,8 @@ namespace ConsoleProject
 
                         if (currentState.Flags.ContainsKey("game_over_route"))
                         {
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: I'm gonna have to get your name young man and you got some questions I need answered.\r\n");
+                            
+                            GameMenu.TypingAnimation("\r\nDetective Zero: I'm gonna have to get your name young man and you got some questions I need answered.\r\n");
                             
                             GameMenu.TypingAnimation("\r\n*A single blink of your eye and the color of the forest changed to a dark and creepy one.*\r\n");
                             
@@ -669,7 +669,7 @@ namespace ConsoleProject
                             
                             GameMenu.TypingAnimation("\r\n*You see these shadow hands and eyes everywhere on the floor*\r\n");
                             
-                            GameMenu.TypingAnimation("*\r\nYou lose consciousness as the shadows drag you away to who knows where*\r\n");
+                            GameMenu.TypingAnimation("\r\n*You lose consciousness as the shadows drag you away to who knows where*\r\n");
 
                             GameMenu.TypingAnimation("\r\nYou have been captured by the shadows...try again.\r\n");
 
@@ -680,6 +680,7 @@ namespace ConsoleProject
                                 switch (decision)
                                 {
                                     case "1":
+                                        Console.Clear();
                                         LoadGame();
                                         break;
                                     default:
@@ -845,7 +846,7 @@ namespace ConsoleProject
                                     isSelected = false;
                                     Console.Clear();
                                     Console.ResetColor();
-                                    GameMenu.TypingAnimation("\r\nOn second thought, I will continue the questioning later once I have an outline of the situation.\r\n");
+                                    GameMenu.TypingAnimation("On second thought, I will continue the questioning later once I have an outline of the situation.\r\n");
                                     
                                     break;
                                 }
@@ -925,7 +926,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose from 'y' or 'n' only.");
                                     continue;
                             }                            
                             break;
@@ -954,7 +955,7 @@ namespace ConsoleProject
                         currentState.Flags["chapter_4_started"] = true;
 
                         GameMenu.TypingAnimation("Chapter 4: Investigation "); 
-                        GameMenu.TypingAnimation("*You are going to the villagers to ask about their experiences*");
+                        GameMenu.TypingAnimation("\r\n*You are going to the villagers to ask about their experiences*");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Arthur, can you be the guard outside of the house, tell me if you see a shadow or something suspicious.\r\n");
                         
@@ -964,20 +965,20 @@ namespace ConsoleProject
 
                         GameMenu.TypingAnimation("\r\nErebus: Alright sir.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nYou have entered the first house\r\n");
+                        GameMenu.TypingAnimation("\r\n*You have entered the first house*\r\n");
                         
                         Console.Clear();
                         GameMenu.TypingAnimation("Erebus: Good afternoon Ms. Anita, I’m sorry for the intrusion, We would just want to interview you quickly to help \r\nour Detective in finding these shadows that have been harming our village.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita rushed to you and grabbed your shoulders.\r\n");
+                        GameMenu.TypingAnimation("\r\n*Ms. Anita rushed to you and grabbed your shoulders.*\r\n");
                         
                         GameMenu.TypingAnimation("\r\nMs. Anita: SIR PLEASE FIND MY BROTHER, IT’S BEEN AGES SINCE I SAW HIM.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Ma’am please calm down, I will try my best to find your brother and bring him back.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita wiped her tears and sat down\r\n");
+                        GameMenu.TypingAnimation("\r\n*Ms. Anita wiped her tears and sat down*\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita: I’m sorry sir, it’s just been…really hard for me.\r\n");
+                        GameMenu.TypingAnimation("\r\nMs. Anita: I’m sorry sir, it’s just been...really hard for me.\r\n");
                         
                         Console.Clear();
                         GameMenu.TypingAnimation("Detective Zero: I understand Ms. Anita, that’s why I’m here to get some information to find your brother.\r\n");                  
@@ -986,7 +987,7 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Ms. Anita I’m really sorry but I don’t really have much time to stay here for too long so I’ll be asking you the questions right away.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita wiped her tears\r\n");
+                        GameMenu.TypingAnimation("\r\n*Ms. Anita wiped her tears again*\r\n");
                         
                         GameMenu.TypingAnimation("\r\nMs. Anita: You can ask me now sir.\r\n");
                         
@@ -1001,7 +1002,7 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Did he leave anything?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita: No sir, there was nothing left behind\r\n");
+                        GameMenu.TypingAnimation("\r\nMs. Anita: No sir, there was nothing left behind.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: What time did this happen?\r\n");
                         
@@ -1023,26 +1024,26 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Understood, thank you Ms. Anita. These will be my questions for now, I’ll come back if I have something I have to ask you. I will find your brother so don’t worry.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nMs. Anita : Thank you sir, please get him back.\r\n");
+                        GameMenu.TypingAnimation("\r\nMs. Anita: Thank you sir, please get him back.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nYou left the house\r\n");
+                        GameMenu.TypingAnimation("\r\n*You left the house*\r\n");
                         
                         GameMenu.TypingAnimation("\r\nArthur: You done sir?\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Yes, did anything happen?\r\n");
                         
                         Console.Clear();
-                        GameMenu.TypingAnimation("Arthur: None sir, everything looks normal\r\n");
+                        GameMenu.TypingAnimation("Arthur: None sir, everything looks normal.\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nDetective Zero: Ok that’s good, let’s move to the next house\r\n");
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Okay that’s good, let’s move to the next house.\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nYou have reached the second house\r\n");
+                        GameMenu.TypingAnimation("\r\n*You have reached the second house*\r\n");
                        
                         GameMenu.TypingAnimation("\r\nDetective Zero: Let’s do what we did earlier again\r\n");
                        
                         GameMenu.TypingAnimation("\r\nArthur: Got it sir.\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nYou knocked at the door\r\n");
+                        GameMenu.TypingAnimation("\r\n*You knocked at the door*\r\n");
 
                         GameMenu.TypingAnimation("\r\nNo one responds\r\n");
                         string[] options = { "Knock again", "Go in without permission" };
@@ -1060,7 +1061,7 @@ namespace ConsoleProject
                                     Console.Clear();
                                     currentState.Flags["delayed_action"] = true;
 
-                                    GameMenu.TypingAnimation("\r\n*No one responds again*\r\n");
+                                    GameMenu.TypingAnimation("*No one responds again*\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\nDetective Zero: Let’s open the door Erebus\r\n");
                                     
@@ -1078,7 +1079,7 @@ namespace ConsoleProject
                                     Console.Clear();
                                     currentState.Flags["swift_action"] = true;
 
-                                    GameMenu.TypingAnimation("\r\nYou have entered the house and saw a pale man in the corner of the house\r\n");
+                                    GameMenu.TypingAnimation("You have entered the house and saw a pale man in the corner of the house\r\n");
                                     
                                     break;
                                 default:
@@ -1132,8 +1133,9 @@ namespace ConsoleProject
                             GameMenu.TypingAnimation("\r\nErebus: Thanks detective, I owe you one but damn, it saddens me that he became like this\r\n");
                             
                             GameMenu.TypingAnimation("\r\nDetective Zero: You knew this man? Who is he?\r\n");
-                            
-                            GameMenu.TypingAnimation("\r\nErebus: His name was Mr. Mark, he lost his wife and daughter from the shadows that’s why he’s so pale, decimated that his family was taken away from him by these cursed entities. I guess his mind broke unable to accept what reality had given him\r\n");
+
+                            Console.Clear();
+                            GameMenu.TypingAnimation("Erebus: His name was Mr. Mark, he lost his wife and daughter from the shadows that’s why he’s so pale, decimated that his family was taken away from him by these cursed entities. I guess his mind broke unable to accept what reality had given him\r\n");
                             
                             GameMenu.TypingAnimation("\r\nDetective Zero: May his soul rest in piece. \"God...this case has now gotten a lot more serious\".\r\n");
                             
@@ -1247,7 +1249,7 @@ namespace ConsoleProject
 
                                     GameMenu.TypingAnimation("Detective Zero: Have you had any encounters with these shadows lately?\r\n");
                                     
-                                    GameMenu.TypingAnimation("\r\nUnfortunately yes, the shadows they...took my husband.\r\n");
+                                    GameMenu.TypingAnimation("\r\nGrandma Quin: Unfortunately yes, the shadows they...took my husband.\r\n");
 
                                     break;
                                 case "2":
@@ -1280,7 +1282,7 @@ namespace ConsoleProject
                         Console.Clear();
                         GameMenu.TypingAnimation("Grandma Quin: It was saying something\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nDetective Zero: What did he say?\r\n");
+                        GameMenu.TypingAnimation("\r\nDetective Zero: What did it say?\r\n");
                         
                         GameMenu.TypingAnimation("\r\nGrandma Quin: He said \"Don’t even think about ruining my plan\" then my husband said \"I’ll kill you -\r\n");
                         
@@ -1288,25 +1290,25 @@ namespace ConsoleProject
 
                         GameMenu.TypingAnimation("\r\nDetective Zero: WHAT, I’ll just finish what Mrs. Quin is saying\r\n");
                     
-                        GameMenu.TypingAnimation("\r\nErebus: SIR WE DON’T HAVE THE TIME WE NEED TO GO\r\n");                     
+                        GameMenu.TypingAnimation("\r\nErebus: SIR WE DON’T HAVE THE TIME WE NEED TO GO NOW!\r\n");                     
 
                         Console.Clear();
                         GameMenu.TypingAnimation("Arthur: SIR RUN!!\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nA black smoke covered the entire house\r\n");
+                        GameMenu.TypingAnimation("\r\n*A black smoke enshrouded the entire house*\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: WHERE ARE YOU GUYS!?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nYou heard Arthur somewhere\r\n");
+                        GameMenu.TypingAnimation("\r\n*You heard Arthur somewhere*\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nArthur: SIR\r\n");
+                        GameMenu.TypingAnimation("\r\nArthur: SIR!\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: WHERE ARE YOU ARTHUR?\r\n");
                         
                         Console.Clear();
-                        GameMenu.TypingAnimation("Arthur: I DON’T KNOW SIR\r\n");
+                        GameMenu.TypingAnimation("Arthur: I DON’T KNOW SIR!\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nThe smoke went away\r\n");
+                        GameMenu.TypingAnimation("\r\n*The smoke went away*\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Ohhhhh no...\r\n");
                         
@@ -1314,7 +1316,7 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nErebus: *cough cough\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nThe three of you stopped in shock\r\n");
+                        GameMenu.TypingAnimation("\r\n*The three of you stopped in shock*\r\n");
                         
                         Console.Clear();
                         GameMenu.TypingAnimation("Detective Zero: How did this happen...\r\n");
@@ -1325,42 +1327,42 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Mrs.Quin...?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nYou saw Mrs. Quin’s body on the floor lifeless\r\n");
+                        GameMenu.TypingAnimation("\r\n*You saw Mrs. Quin’s body on the floor lifeless*\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nYou rushed and checked if she’s alive\r\n");
+                        GameMenu.TypingAnimation("\r\n*You rushed and checked if she’s alive*\r\n");
                         
                         Console.Clear();
                         GameMenu.TypingAnimation("Detective Zero: MRS. QUIN WAKE UP!\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nMrs. Quin didn’t move\r\n");
+                        GameMenu.TypingAnimation("\r\n*Mrs. Quin didn’t move*\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nYou kept on waking her up\r\n");
+                        GameMenu.TypingAnimation("\r\n*You kept on trying to wake her up*\r\n");
                        
-                        GameMenu.TypingAnimation("\r\nErebus: Sir please stop...\r\n");
+                        GameMenu.TypingAnimation("\r\nErebus: Sir please stop...she is gone.\r\n");
     
-                        GameMenu.TypingAnimation("\r\nArthur: Let’s go give her to the priest for a burier\r\n");
+                        GameMenu.TypingAnimation("\r\nArthur: Let’s go bring her to the priest for a proper burial.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nErebus: I’ll bring her to the church\r\n");                      
+                        GameMenu.TypingAnimation("\r\nErebus: I’ll bring her to the church.\r\n");                      
 
                         Console.Clear();
-                        GameMenu.TypingAnimation("Detective Zero: Please do take good care of her\r\n");                       
+                        GameMenu.TypingAnimation("Detective Zero: Please do take good care of her.\r\n");                       
 
-                        GameMenu.TypingAnimation("\r\nErebus: I will sir\r\n");                     
+                        GameMenu.TypingAnimation("\r\nErebus: I will sir.\r\n");                     
 
                     }
-                    else if (!currentState.Flags.ContainsKey("chapter_5_complete"))
+                    else if (!currentState.Flags.ContainsKey("chapter_4_complete"))
                     {
-                        currentState.Flags["chapter_5_complete"] = true;
+                        currentState.Flags["chapter_4_complete"] = true;
                         currentState.CompletedEvents.Add("Chapter_5_Completed");
                         currentState.CurrentChapter++;
 
-                        GameMenu.TypingAnimation("\r\nErebus went to the church while you and Arthur stayed at the house");
+                        GameMenu.TypingAnimation("\r\n*Erebus went to the church while you and Arthur stayed at the house*");
                         
 
                         GameMenu.TypingAnimation("\r\n\"It looks like things are starting to escalate\".");
                         
                         Console.Clear();
-                        Console.WriteLine("Chapter 5 Complete! Your choices will affect future events...");
+                        Console.WriteLine("Chapter 4 Complete! Your choices will affect future events...");
 
                         while (true)
                         {
@@ -1378,7 +1380,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose from 'y' or 'n' only");
+                                    Console.WriteLine("\nInvalid choice. Please choose from 'y' or 'n' only");
                                     continue;
                             }                           
                             break;
@@ -1388,6 +1390,7 @@ namespace ConsoleProject
                     {
                         break;
                     }
+                    
                 }
                 catch (FormatException ex)
                 {
@@ -1410,26 +1413,26 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: What is happenning outside Arthur?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nArthur: We saw smoke going towards us so we immediately wanted to warn you sir\r\n");
+                        GameMenu.TypingAnimation("\r\nArthur: We saw smoke going towards us so we immediately wanted to warn you sir.\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nDetective Zero: no shadow?\r\n");
+                        GameMenu.TypingAnimation("\r\nDetective Zero: No shadows?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nArthur: None sir, this is the first time this has happened\r\n");                       
+                        GameMenu.TypingAnimation("\r\nArthur: None sir, this is the first time this has happened.\r\n");                       
 
-                        GameMenu.TypingAnimation("\r\nDetective Zero: I see, I’m gonna go outside to check\r\n");                       
+                        GameMenu.TypingAnimation("\r\nDetective Zero: I see, I’m gonna go outside to check.\r\n");                       
 
-                        GameMenu.TypingAnimation("\r\nArthur: I’ll come with you sir\r\n");                      
+                        GameMenu.TypingAnimation("\r\nArthur: I’ll come with you sir.\r\n");                      
 
                         Console.Clear();
-                        GameMenu.TypingAnimation("Both of you went outside\r\n");
+                        GameMenu.TypingAnimation("*Both of you went outside*\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nDetective Zero: It looks completely normal now\r\n");                      
+                        GameMenu.TypingAnimation("\r\nDetective Zero: It looks completely normal now...strange.\r\n");                      
 
-                        GameMenu.TypingAnimation("\r\nAnonymous voice: Help me…\r\n");                     
+                        GameMenu.TypingAnimation("\r\nAnonymous voice: Help me...\r\n");                     
 
-                        GameMenu.TypingAnimation("\r\nArthur: SIR BEHIND YOU, RUN\r\n");                     
+                        GameMenu.TypingAnimation("\r\nArthur: SIR BEHIND YOU, RUN!\r\n");                     
 
-                        GameMenu.TypingAnimation("\r\nYou turned around and saw… a shadow\r\n");
+                        GameMenu.TypingAnimation("\r\n*You turned around and saw what seemed to be...a shadow*\r\n");
                         
                     }
                     else if (!currentState.Flags.ContainsKey("first_shadow_encounter"))
@@ -1445,7 +1448,7 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Human? Who are you trying to fool here cursed shadow!?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nAnonymous voice: Help me go back please\r\n");
+                        GameMenu.TypingAnimation("\r\nAnonymous voice: Help me go back please.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: What do you mean go back? What trickery is this?\r\n");                       
 
@@ -1478,7 +1481,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nAnonymous voice: It’s gone for now, I can get it back when the Big Tree recovers to its former state.\r\n");
                         
                         Console.Clear();
-                        GameMenu.TypingAnimation("Detective Zero: Why don’t you fight the shadows yourself then\r\n");
+                        GameMenu.TypingAnimation("Detective Zero: Why don’t you fight the shadows yourself then?\r\n");
                         
                         GameMenu.TypingAnimation("\r\nAnonymous voice: I can’t use the power of the stone.\r\n");
                         
@@ -1527,14 +1530,14 @@ namespace ConsoleProject
                                     currentState.Flags["trust_anonymous_shadow"] = true;
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("Detective Zero: Fine then. I’ll trust you, but I'll keep a close watch on you.");
+                                    GameMenu.TypingAnimation("Detective Zero: Fine then. I’ll trust you, but I'll keep a close watch on you.\r\n");
                                     
                                     break;
                                 case "2":
                                     currentState.Flags["don't_trust_the_shadow"] = true;
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("\r\nAnonymous voice: Ah I see. Your loss then.");
+                                    GameMenu.TypingAnimation("Anonymous voice: Ah I see. Your loss then.\r\n");
                                     
                                     break;
                                 default:
@@ -1555,13 +1558,13 @@ namespace ConsoleProject
                             
                             GameMenu.TypingAnimation("\r\nAnonymous voice: One last thing\r\n");
                             
-                            GameMenu.TypingAnimation("\r\nDetective Zero: What is it\r\n");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: What is it?\r\n");
                             
                             GameMenu.TypingAnimation("\r\nAnonymous voice: Don’t tell anyone you have the stone, keep this between us only, there might be shadows around that are watching you and they might take the stone from you when you least expect it.\r\n");                          
 
                             GameMenu.TypingAnimation("\r\nDetective Zero: Copy that. I'll keep that in mind.\r\n");
                             
-                            GameMenu.TypingAnimation("\r\nSlowly the nothingness place faded and you got back from where you were. You told Arthur that the shadow failed to take you. \r\nArthur kept asking you questions about it but you quickly changed the topic to the next plan\r\n");
+                            GameMenu.TypingAnimation("\r\n*Slowly the nothingness place faded and you got back from where you were. You told Arthur that the shadow failed to take you. \r\nArthur kept asking you questions about it but you quickly changed the topic to the next plan*\r\n");
                             
                         }
                         else if (currentState.Flags.ContainsKey("don't_trust_the_shadow"))
@@ -1595,6 +1598,8 @@ namespace ConsoleProject
                                 break;
                             }
                         }
+
+          
                     }
                     else if (!currentState.Flags.ContainsKey("chapter_5_complete"))
                     {
@@ -1602,7 +1607,7 @@ namespace ConsoleProject
                         currentState.CompletedEvents.Add("Chapter5_Completed");
                         currentState.CurrentChapter++;
 
-                        GameMenu.TypingAnimation("Now having recruited an unexpected ally.\nYou hoped the decision you made was the wise one once again\r\n");
+                        GameMenu.TypingAnimation("\r\nNow having recruited an unexpected ally.\nYou hoped the decision you made was the wise one once again\r\n");
                     
                         Console.Clear();
                         Console.WriteLine("Chapter 5 Complete! Your choices will affect future events...");
@@ -1647,7 +1652,7 @@ namespace ConsoleProject
             {
                 try
                 {
-                    if (!currentState.Flags.ContainsKey("chapter6_started"))
+                    if (!currentState.Flags.ContainsKey("chapter_6_started"))
                     {
                         currentState.Flags["chapter_6_started"] = true;
 
@@ -1714,27 +1719,27 @@ namespace ConsoleProject
                         Console.Clear();
                         GameMenu.TypingAnimation("Anonymous voice: Good decision sir, we'll make sure to get his friend back.\r\n");
 
-                        GameMenu.TypingAnimation("\r\nDetective Zero: Let’s go");
+                        GameMenu.TypingAnimation("\r\nDetective Zero: Let’s go\r\n");
 
                         if (currentState.Flags.ContainsKey("director_helps"))
                         {
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Hold on, I should contact the director first. He did say to call in this kind of situation.");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Hold on, I should contact the director first. He did say to call in this kind of situation.\r\n");
 
-                            GameMenu.TypingAnimation("\r\n*Calls director*");
+                            GameMenu.TypingAnimation("\r\n*Calls director*\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDirector: Ahhhh Rosenberger you called. What's our situation over there?");
+                            GameMenu.TypingAnimation("\r\nDirector: Ahhhh Rosenberger you called. What's our situation over there?\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: There is a non-hostile shadow that is helping us currently. Calling in reinforcements would be a game changer but I fear they won't make it in time.");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: There is a non-hostile shadow that is helping us currently. Calling in reinforcements would be a game changer but I fear they won't make it in time.\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDirector: Yes I am afraid it would take too long for reinforcements to come. Good thing I have ordered to bring you some combat equipment as a precautionary measure.");
+                            GameMenu.TypingAnimation("\r\nDirector: Yes I am afraid it would take too long for reinforcements to come. Good thing I have ordered to bring you some combat equipment as a precautionary measure.\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Goodness director, you are one hell of a blessing to have in this times. Where shall I get it?");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Goodness director, you are one hell of a blessing to have in this times. Where shall I get it?\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDirector: I had it sent to the church, you can arm yourself there.");
+                            GameMenu.TypingAnimation("\r\nDirector: I had it sent to the church, you can arm yourself there.\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Roger that director, thanks again");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Roger that director, thanks again\r\n");
 
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Shall we make a quick stopover then detective?");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Shall we make a quick stopover then detective?\r\n");
                             
                             currentState.Player.Health += 50;
                             currentState.Player.MaxHealth += 50;
@@ -1745,8 +1750,8 @@ namespace ConsoleProject
                         }
                         else
                         {
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Just to be sure, you're not forgetting anything are you?");
-                            GameMenu.TypingAnimation("\r\nDetective Zero: I am fully prepared shadow. Let us make haste!");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Just to be sure, you're not forgetting anything are you?\r\n");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: I am fully prepared shadow. Let us make haste!\r\n");
                         }
                         GameMenu.TypingAnimation("\r\n*You started walking to the Big Tree with the guide of the shadow.*\r\n");
 
@@ -1757,7 +1762,7 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDetective Zero: With who?\r\n");
 
                         Console.Clear();
-                        GameMenu.TypingAnimation("Anonymous voice: look at your left\r\n");
+                        GameMenu.TypingAnimation("Anonymous voice: look to your left\r\n");
 
                         GameMenu.TypingAnimation("\r\n*You looked at your left and saw an eye shadow.*\r\n");
 
@@ -1769,28 +1774,47 @@ namespace ConsoleProject
                         {
                             while (isCombatActive)
                             {
+
                                 if (currentState.Player.Health <= 0)
                                 {
                                     GameMenu.CreateBox("You have been defeated, but the stone forces you to fight on!", 5);
                                     Thread.Sleep(2000);
-                                    RestoreHealth(currentState.Player);                                    
-                                    continue;
+                                    RestoreHealth(currentState.Player); // Restore player's health
+                                    GameMenu.CreateBox("You have been revived with full health!", 5);
+                                    continue; // Continue the combat loop
                                 }
+
+
                                 if (shade.Health <= 0)
                                 {
-                                    isCombatActive = false;
+                                    GameMenu.CreateBox("You have defeated the Shade!", 5);
+                                    isCombatActive = false; // End the combat loop
                                     break;
                                 }
                                 else
                                 {
-                                    InitiateCombat(enemies["Shade"]);
+
+                                    InitiateCombat(shade);
+
+                                    if (shade.Health <= 0)
+                                    {
+                                        GameMenu.CreateBox("You have successfully defeated the enemy!", 5);
+                                        isCombatActive = false; // End the combat loop if the ghoul is defeated
+                                    }
+                                    else if (currentState.Player.Health <= 0)
+                                    {
+                                        continue;
+                                    }
                                 }
                             }
-                          
                         }
-                           
+                        else
+                        {
+                            GameMenu.CreateBox("The enemy could not be found.", 5);
+                        }
+
                         Console.Clear();
-                        GameMenu.TypingAnimation("\r\nDetective Zero: This is too powerful\r\n");
+                        GameMenu.TypingAnimation("Detective Zero: This is too powerful\r\n");
 
                         GameMenu.TypingAnimation("\r\nAnonymous voice: I agree. Did it do any harm to you?\r\n");
 
@@ -1828,7 +1852,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose from 'y' or 'n' only.");
                                     continue;
                             }
                             break;
@@ -1907,21 +1931,21 @@ namespace ConsoleProject
                             GameMenu.TypingAnimation("\r\n*Flashback ends*\r\n");
 
                             Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: We then proceded to storm the house of Mr. Carter's private doctor. He was elusive, madman tried to kill me after I saw him trying to escape. Luckily I managed to defend myself.");
+                            GameMenu.TypingAnimation("Detective Zero: We then proceded to storm the house of Mr. Carter's private doctor. He was elusive, madman tried to kill me after I saw him trying to escape. Luckily I managed to defend myself.\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: Since then, word had spread about\r\n the case. A rookie solving a case faster that even seasoned detectives can solve.");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Since then, word had spread about\r\n the case. A rookie solving a case faster that even seasoned detectives can solve.\r\n");
 
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Ahhh so you're a prodigy detective!");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Ahhh so you're a prodigy detective!\r\n");
 
-                            GameMenu.TypingAnimation("\r\nDetective Zero: (Jokingly said) Flattering, but a prodigy would be an overstatement.");
+                            GameMenu.TypingAnimation("\r\nDetective Zero: (Jokingly said) Flattering, but a prodigy would be an overstatement.\r\n");
 
                         }
                         else
                         {
-                            Console.Clear();
-                            GameMenu.TypingAnimation("Detective Zero: Care for small talk shadow?");
+                            
+                            GameMenu.TypingAnimation("\r\nDetective Zero: Care for small talk shadow?\r\n");
 
-                            GameMenu.TypingAnimation("\r\nAnonymous voice: Now is not the time detective, maybe some other time once this is over.");
+                            GameMenu.TypingAnimation("\r\nAnonymous voice: Now is not the time detective, maybe some other time once this is over.\r\n");
 
                         }
                         GameMenu.TypingAnimation("\r\nAnonymous voice: Heads up detective, we are no longer alone it seems.");
@@ -1944,12 +1968,27 @@ namespace ConsoleProject
                                     {
                                         GameMenu.TypingAnimation("\nA shadow appears! Prepare for battle.");
                                         if (enemies.TryGetValue("Shadow Fiend", out Character shadowFiend)) // check character health from its dictionary
-                                        {
+                                        {                                                                                    
                                             if (shadowFiend.Health <= 0)
                                             {
                                                 GameMenu.TypingAnimation($"\r\nYou found the body of a dead {shadowFiend.Name}");
                                                 RestoreHealth(shadowFiend);
+                                            }
+                                            if (currentState.Player.Health > 0)
+                                            {
                                                 InitiateCombat(enemies["Shadow Fiend"]);
+
+                                                if (shadowFiend.Health <= 0 && currentState.Player.Health > 0)
+                                                {
+                                                    GameMenu.TypingAnimation($"\nYou have acquired: {symbols[shadowsDefeated]}");
+                                                    shadowsDefeated++; // Increment only on successful combat
+                                                }
+                                                else if (currentState.Player.Health <= 0)
+                                                {
+                                                    GameMenu.CreateBox("You have been defeated, but the stone forces you to fight on!", 2);
+                                                    RestoreHealth(currentState.Player);
+                                                    GameMenu.CreateBox("You health has been restored", 2);
+                                                }
                                             }
                                             else
                                             {
@@ -1960,9 +1999,7 @@ namespace ConsoleProject
                                         {
                                             GameMenu.TypingAnimation("\r\nNo enemies to be found");
                                         }
-                                        
-                                        GameMenu.TypingAnimation($"You have acquired: {symbols[shadowsDefeated]}");
-                                        shadowsDefeated++;
+                                       
                                     }
                                     else
                                     {
@@ -1986,9 +2023,7 @@ namespace ConsoleProject
                             }
                         }
 
-                        GameMenu.TypingAnimation("You have acquired all of the moon symbols. The journey continues...");
-
-                        GameMenu.TypingAnimation("\nYou have acquired all of the moon symbols!");
+                        GameMenu.TypingAnimation("\nYou have acquired all of the moon symbols!\r\n");
                     }
                     else if (!currentState.Flags.ContainsKey("chapter_7_complete"))
                     {
@@ -2001,8 +2036,6 @@ namespace ConsoleProject
 
                         Console.Clear();
                         Console.WriteLine("Chapter 7 Complete! Your choices will affect future events...\r\n");
-
-                        Console.WriteLine("Do you wish to go to the next chapter? (y) if yes or (n) if no\r\n");
 
                         while (true)
                         {
@@ -2020,7 +2053,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose again from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose again from 'y' or 'n' only.");
                                     continue;
                             }
                             break;
@@ -2080,7 +2113,6 @@ namespace ConsoleProject
 
                         Console.Clear();
                         Console.WriteLine("Chapter 8 Complete! Your choices will affect future events..\r\n.");
-                        Console.WriteLine("Do you wish to go to the next chapter? (y) if yes or (n) if no\r\n");
 
                         while (true)
                         {
@@ -2098,7 +2130,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose again from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose again from 'y' or 'n' only.");
                                     continue;
                             }
                             break;
@@ -2136,56 +2168,99 @@ namespace ConsoleProject
                         GameMenu.TypingAnimation("\r\nDetective Zero: LOOK OUT!\r\n");
 
                         bool isCombatActive = true;
-                        if (enemies.TryGetValue("Mutilated Villager", out Character mutilatedVillager))
+
+                        if (enemies.TryGetValue("Ghoul", out Character ghoul))
                         {
                             while (isCombatActive)
                             {
+
                                 if (currentState.Player.Health <= 0)
                                 {
                                     GameMenu.CreateBox("You have been defeated, but the stone forces you to fight on!", 5);
                                     Thread.Sleep(2000);
-                                    RestoreHealth(currentState.Player);
-                                    continue;
+                                    RestoreHealth(currentState.Player); // Restore player's health
+                                    GameMenu.CreateBox("You have been revived with full health!", 5);
+                                    continue; // Continue the combat loop
                                 }
-                                if (mutilatedVillager.Health <= 0)
+
+
+                                if (ghoul.Health <= 0)
                                 {
-                                    isCombatActive = false;
+                                    GameMenu.CreateBox("You have defeated the Ghoul!", 5);
+                                    isCombatActive = false; // End the combat loop
                                     break;
                                 }
                                 else
                                 {
-                                    InitiateCombat(enemies["Mutilated Villager"]);
+
+                                    InitiateCombat(ghoul);
+
+                                    if (ghoul.Health <= 0)
+                                    {
+                                        GameMenu.CreateBox("You have successfully defeated the enemy!", 5);
+                                        isCombatActive = false; // End the combat loop if the ghoul is defeated
+                                    }
+                                    else if (currentState.Player.Health <= 0)
+                                    {
+                                        continue;
+                                    }
                                 }
                             }
                         }
+                        else
+                        {
+                            GameMenu.CreateBox("The enemy could not be found.", 5);
+                        }
 
-                        GameMenu.TypingAnimation("Anonymous voice: ENEMY INCOMING!");
+                        Console.Clear();
+                        GameMenu.TypingAnimation("Anonymous voice: ENEMY INCOMING!\r\n");
                         GameMenu.TypingAnimation("\r\nTsk another one huh.\r\n");
 
                         bool isCombatActive2 = true;
-                        if (enemies.TryGetValue("Mutilated Villager", out Character ghoul))
+
+                        if (enemies.TryGetValue("Mutilated Villager", out Character mutilatedVillager))
                         {
                             while (isCombatActive2)
                             {
+                                
                                 if (currentState.Player.Health <= 0)
                                 {
                                     GameMenu.CreateBox("You have been defeated, but the stone forces you to fight on!", 5);
                                     Thread.Sleep(2000);
-                                    RestoreHealth(currentState.Player);
-                                    continue;
+                                    RestoreHealth(currentState.Player); // Restore player's health
+                                    GameMenu.CreateBox("You have been revived with full health!", 5);
+                                    continue; // Continue the combat loop
                                 }
-                                if (ghoul.Health <= 0)
+
+                                
+                                if (mutilatedVillager.Health <= 0)
                                 {
-                                    isCombatActive = false;
+                                    GameMenu.CreateBox("You have defeated the Mutilated Villager!", 5);
+                                    isCombatActive2 = false; // End the combat loop
                                     break;
                                 }
                                 else
                                 {
-                                    InitiateCombat(enemies["Ghoul"]);
+                                   
+                                    InitiateCombat(mutilatedVillager);
+
+                                    if (mutilatedVillager.Health <= 0)
+                                    {
+                                        GameMenu.CreateBox("You have successfully defeated the enemy!", 5);
+                                        isCombatActive2 = false; // End the combat loop if the ghoul is defeated
+                                    }
+                                    else if (currentState.Player.Health <= 0)
+                                    {                                      
+                                        continue;
+                                    }
                                 }
                             }
                         }
-                        
+                        else
+                        {
+                            GameMenu.CreateBox("The enemy could not be found.", 5);
+                        }
+
                         GameMenu.TypingAnimation("\r\nYou encountered more shadows along the way, but the stone protected you.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: This stone is incredible. It’s like a shield.\r\n");
@@ -2205,7 +2280,7 @@ namespace ConsoleProject
                                 case "1":
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("\r\nYou pushed forward, determined to reach the Big Tree.\r\n");
+                                    GameMenu.TypingAnimation("You pushed forward, determined to reach the Big Tree.\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\nDetective Zero: I can see it. We’re almost there.\r\n");
                                     
@@ -2214,14 +2289,14 @@ namespace ConsoleProject
                                 case "2":
                                     Console.ResetColor();
                                     Console.Clear();
-                                    GameMenu.TypingAnimation("\r\nYou took a brief rest to gather your strength.\r\n");
+                                    GameMenu.TypingAnimation("You took a brief rest to gather your strength.\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\nDetective Zero: I need to be at my best for this.\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\nAnonymous voice: Rest, but stay alert. The shadows are always watching.\r\n");
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose from \"1\" or \"2\" only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose from \"1\" or \"2\" only.");
                                     continue;
                             }
                             break;
@@ -2254,7 +2329,7 @@ namespace ConsoleProject
                                     PlayGame();
                                     break;
                                 default:
-                                    GameMenu.TypingAnimation("\nInvalid choice. Please choose from 'y' or 'n' only.");
+                                    Console.WriteLine("\nInvalid choice. Please choose from 'y' or 'n' only.");
                                     continue;
                             }                           
                             break;
@@ -2287,16 +2362,16 @@ namespace ConsoleProject
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Who are you?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nErebus: It’s me, Erebus. I’ve been waiting for you detective.\r\n");
+                        GameMenu.TypingAnimation("\r\nDreadlord Erebus: It’s me, Erebus. I’ve been waiting for you detective.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: Erebus? What are you doing here?\r\n");
                         
-                        GameMenu.TypingAnimation("\r\nErebus: I am not just a villager. I am the God of Shadows.\r\n");
+                        GameMenu.TypingAnimation("\r\nDreadlord Erebus: I am not just a villager. I am the God of Shadows.\r\n");
                         
                         GameMenu.TypingAnimation("\r\nDetective Zero: What?! You’ve been deceiving us all along?\r\n");
                         
                         Console.Clear();
-                        GameMenu.TypingAnimation("Erebus: Yes, and now you’ve brought the stone to me. Once I get a hold of it, I will summon an entire army that will plunge this world into darkness!.\r\n");
+                        GameMenu.TypingAnimation("Dreadlord Erebus: Yes, and now you’ve brought the stone to me. Once I get a hold of it, I will summon an entire army that will plunge this world into darkness!.\r\n");
                         
                         string[] options = { "Confront Erebus", "Try to reason with Erebus" };
                         MenuControls.ShowChoices(options);
@@ -2314,10 +2389,7 @@ namespace ConsoleProject
                                     GameMenu.TypingAnimation("\r\nDetective Zero: I won’t let you take the stone!\r\n");
                                     
                                     GameMenu.TypingAnimation("\r\nErebus: Foolish human. You cannot stop me.\r\n");
-                                    
-                                    GameMenu.TypingAnimation("\r\nA fierce battle ensued, with Erebus using his shadow powers against you.");
-
-                                    GameMenu.TypingAnimation("\r\nYet you proved to be victorious");                  
+                                                     
                                     break;
                                 case "2":
                                     Console.ResetColor();
@@ -2343,31 +2415,52 @@ namespace ConsoleProject
                         currentState.Flags["finishing_blow"] = true;
 
                         bool isCombatActive = true;
+
                         if (enemies.TryGetValue("Dreadlord", out Character dreadlord))
                         {
                             while (isCombatActive)
                             {
+
                                 if (currentState.Player.Health <= 0)
                                 {
                                     GameMenu.CreateBox("You have been defeated, but the stone forces you to fight on!", 5);
                                     Thread.Sleep(2000);
-                                    RestoreHealth(currentState.Player);
-                                    continue;
+                                    RestoreHealth(currentState.Player); // Restore player's health
+                                    GameMenu.CreateBox("You have been revived with full health!", 5);
+                                    continue; // Continue the combat loop
                                 }
+
+
                                 if (dreadlord.Health <= 0)
                                 {
-                                    isCombatActive = false;
+                                    GameMenu.CreateBox("You have defeated Erebus!", 5);
+                                    isCombatActive = false; // End the combat loop
                                     break;
                                 }
                                 else
                                 {
-                                    InitiateCombat(enemies["Ghoul"]);
+
+                                    InitiateCombat(dreadlord);
+
+                                    if (dreadlord.Health <= 0)
+                                    {
+                                        GameMenu.CreateBox("You have successfully defeated Erebus!", 5);
+                                        isCombatActive = false; // End the combat loop if the ghoul is defeated
+                                    }
+                                    else if (currentState.Player.Health <= 0)
+                                    {
+                                        continue;
+                                    }
                                 }
                             }
                         }
+                        else
+                        {
+                            GameMenu.CreateBox("The enemy could not be found.", 5);
+                        }
 
                         Console.Clear();
-                        GameMenu.TypingAnimation("\r\n*A fierce battle ensued, with Erebus using his shadow powers against you.*");
+                        GameMenu.TypingAnimation("*A fierce battle then ensued, with Erebus using his shadow powers against you.*");
 
                         GameMenu.TypingAnimation("\r\n*You channeled the stone’s power, creating a blinding light that weakened Erebus.*\r\n");
 
