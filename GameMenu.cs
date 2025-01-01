@@ -64,12 +64,16 @@ namespace ConsoleProject
             Game startGame = new Game();
             startGame.StartGame();
         }
-        public static void TypingAnimation(string typing)
+        public static void TypingAnimation(string typing, bool waitForKey = true)
         {
             foreach (char letter in typing)
             {
                 Console.Write(letter);
                 Thread.Sleep(1);
+            }
+            if (waitForKey)
+            {
+                Console.ReadKey(intercept: true);
             }
         }
         public static void CreateBox(string textInside, int boxWidth)
