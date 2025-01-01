@@ -91,8 +91,9 @@ namespace ConsoleProject
             foreach (string option in options)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
-                GameMenu.TypingAnimation($"\r\n{selectionCounter++}. {option}", waitForKey: true);
+                Console.WriteLine($"\r\n{selectionCounter++}. {option}");
             }
+            Console.Write("Choice: ");
         }
     }
 }
