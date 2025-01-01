@@ -69,7 +69,7 @@ namespace ConsoleProject
             foreach (char letter in typing)
             {
                 Console.Write(letter);
-                Thread.Sleep(0);
+                Thread.Sleep(2);
             }
             Console.ReadKey(intercept: true);
         }
